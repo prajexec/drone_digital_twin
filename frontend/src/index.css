@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  --bg-deep:    #f1f5f9;
+  --bg-card:    rgba(255, 255, 255, 0.92);
+  --bg-dark:    rgba(15, 23, 42, 0.85);
+  --border:     rgba(148, 163, 184, 0.25);
+  --border-dark: rgba(255, 255, 255, 0.08);
+  --text-main:  #1e293b;
+  --text-muted: #64748b;
+}
+
+* { box-sizing: border-box; }
+
+html, body, #root {
+  margin: 0; padding: 0;
+  width: 100vw; height: 100vh;
+  overflow: hidden;
+  background: var(--bg-deep);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--text-main);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Scrollbar (dark variant) ───────────────────────────────── */
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(148,163,184,0.2); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(148,163,184,0.4); }
+
+/* ─── Glass panel (light) ────────────────────────────────────── */
+.glass {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(20px) saturate(1.2);
+  -webkit-backdrop-filter: blur(20px) saturate(1.2);
+  border-radius: 10px;
+}
+
+/* ─── Glass panel (dark — mission control style) ─────────────── */
+.glass-dark {
+  background: var(--bg-dark);
+  border: 1px solid var(--border-dark);
+  backdrop-filter: blur(24px) saturate(1.4);
+  -webkit-backdrop-filter: blur(24px) saturate(1.4);
+  border-radius: 8px;
+}
+
+/* ─── Mono font for data readouts ────────────────────────────── */
+.mono { font-family: 'JetBrains Mono', 'SF Mono', 'Consolas', monospace; }
+
+/* ─── Animations ─────────────────────────────────────────────── */
+@keyframes ping-slow {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.5; transform: scale(1.2); }
+}
+.pulse-slow { animation: ping-slow 2s ease-in-out infinite; }
+
+@keyframes slide-down {
+  from { opacity: 0; max-height: 0; }
+  to   { opacity: 1; max-height: 200px; }
+}
+.animate-slide-down {
+  animation: slide-down 0.2s ease-out;
+  overflow: hidden;
+}
+
+/* ─── Battery bar transition ─────────────────────────────────── */
+.battery-fill {
+  transition: width 0.4s ease, background-color 0.4s ease;
+}
+
+/* ─── Selection color ────────────────────────────────────────── */
+::selection {
+  background: rgba(99, 102, 241, 0.15);
+  color: #1e293b;
+}
+
+/* ─── Scrollbar thin variant ─────────────────────────────────── */
+.scrollbar-thin::-webkit-scrollbar { width: 2px; }
+.scrollbar-thin::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); }
